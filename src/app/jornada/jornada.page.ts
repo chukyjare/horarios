@@ -15,16 +15,11 @@ import { Partido } from '../core/model/partido';
 })
 export class JornadaPage implements OnInit {
   liga: Liga = new Liga();
-  
-  numJornada=1;
-  jornada= new Jornada(this.liga.$listaEquipos, this.numJornada, this.liga.$fechas[this.numJornada]);
+  numJornada: number=0;
+  jornada: Jornada= new Jornada(this.liga.$listaEquipos, this.numJornada, this.liga.$fechas[this.numJornada]);
   clasificacion = this.jornada.$clasiJornada.$listaClasiJornada;
- 
-  
   cronologia: Cronologia;
-  
-  
-  resultado=this.jornada.$listaPartidos;
+  resultado: Partido[]=this.jornada.$listaPartidos;
   
   constructor(private aler: AlertController, private route: Router) {}
   async pasaDato(event:Partido) {
@@ -37,13 +32,13 @@ export class JornadaPage implements OnInit {
     this.route.navigate(["cronologia"], extrasNavegacion);
 
   }
-  visible = true;
-  habilitado=true;
-  segmentChanged(hola) {
+  visible: boolean = true;
+  habilitado: boolean=true;
+  segmentChanged(sudorYlagrimas) {
     this.visible = !this.visible;
   }
   cambiarAnterior(numJornada){
-    if (numJornada>0) {
+    if (numJornada>=0) {
       this.numJornada=numJornada;
       this.jornada= this.liga.$listaJornadas[this.numJornada];
       this.resultado=this.jornada.$listaPartidos;
