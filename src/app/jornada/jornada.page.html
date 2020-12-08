@@ -54,11 +54,11 @@
   </ion-row>
 
   <ion-row  *ngFor="let item of clasificacion" class="ion-text-center">
-    <ion-col>{{item.$posicion}}</ion-col>
+    <ion-col>{{item.$posicionInfo}}</ion-col>
     <ion-col size="5">{{item.$nombre}}</ion-col>
-    <ion-col>{{item.$puntos}}</ion-col>
-    <ion-col >{{item.$GF}}</ion-col>
-    <ion-col>{{item.$GC}}</ion-col>
+    <ion-col>{{item.$puntosInfo}}</ion-col>
+    <ion-col >{{item.$GFInfo}}</ion-col>
+    <ion-col>{{item.$GCInfo}}</ion-col>
   </ion-row>
   
 </ion-content>

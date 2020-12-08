@@ -1,13 +1,14 @@
 import { Resultado } from './resultado';
 import { Equipo } from './equipo';
 import { Partido } from './partido';
+import { EquipoInfo } from './equipoInfo';
 
 
 export class Clasificacion{
 
     private listaClasificacion: Array<Equipo>;
 
-    private listaClasiJornada: Array<Equipo>;
+    private listaClasiJornada: Array<EquipoInfo>;
     
     constructor(private listaEquipos: Array<Equipo>, private listaPartidos: Array<Partido>){
         this.listaEquipos=listaEquipos;
@@ -24,13 +25,12 @@ export class Clasificacion{
             this.listaClasificacion.push(element);
         });
     }
-    guardarClasificacion(listaClasificacion: Array<Equipo>):Array<Equipo> {
-        let listaGuardada:Array<Equipo> = new Array<Equipo>();
+    guardarClasificacion(listaClasificacion: Array<Equipo>):Array<EquipoInfo> {
+        let listaGuardada:Array<EquipoInfo> = new Array<EquipoInfo>();
         for (let i = 0; i < listaClasificacion.length; i++) {
             for (let j = 0; j < listaClasificacion.length; j++) {
                 if (listaClasificacion[j].$posicion==(i+1)) {
-                    let temporal:Equipo= new Equipo(listaClasificacion[j].$nombre);
-                    temporal=listaClasificacion[j];
+                    let temporal:EquipoInfo= new EquipoInfo(listaClasificacion[j].$nombre, String(listaClasificacion[j].$posicion),String(listaClasificacion[j].$puntos),String(listaClasificacion[j].$GF), String(listaClasificacion[j].$GC));
                     listaGuardada.push(temporal);
                 }
             }  
@@ -123,9 +123,9 @@ export class Clasificacion{
     
     /**
      * Getter $listaClasiJornada
-     * @return {Array<Equipo>}
+     * @return {Array<EquipoInfo>}
      */
-    public get $listaClasiJornada(): Array<Equipo> {
+    public get $listaClasiJornada():Array<EquipoInfo> {
         return this.listaClasiJornada;
     }
     /**
