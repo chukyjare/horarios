@@ -12,7 +12,7 @@ export class Liga {
     private equipos=["Amurrio", "Arrati", "Tudelano", "PlazaFC", "Atletico", "Gordos", "Oropesa", "LobosUD", "Ansuelo", "Emeritos"];
     private cantidadEquipos:number=this.equipos.length;
     private listaJornadas: Array<Jornada>;
-    private maxJornadas:number=20;
+    private maxJornadas:number=18;
     private fechas: Array<Fecha>;
     
     constructor(){

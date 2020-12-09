@@ -26,7 +26,7 @@
 
 
 <ion-content *ngIf="visible" >  
-  <ion-item class="ion-text-center" color="success"><ion-label>JORNADA {{numJornada}}</ion-label></ion-item>
+  <ion-item class="ion-text-center" color="success"><ion-label>JORNADA {{letreroJornada}}</ion-label></ion-item>
   <ion-card *ngFor="let item of resultado" (click)="pasaDato(item)">
     <ion-card-header class="ion-text-center">
         <ion-label>{{item.$casa}} : {{item.$visitante}}</ion-label>
@@ -44,7 +44,7 @@
 
 <ion-content *ngIf="!visible">
 <!-- Clasificacion -->
-<ion-item class="ion-text-center" color="success"><ion-label>JORNADA {{numJornada}}</ion-label></ion-item>
+<ion-item class="ion-text-center" color="success"><ion-label>JORNADA {{letreroJornada}}</ion-label></ion-item>
   <ion-row class="ion-text-center">
     <ion-col>Puesto</ion-col>
     <ion-col size="5">Equipo</ion-col>

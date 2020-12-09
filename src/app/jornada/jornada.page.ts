@@ -16,6 +16,7 @@ import { Partido } from '../core/model/partido';
 export class JornadaPage implements OnInit {
   liga: Liga = new Liga();
   numJornada: number=0;
+  letreroJornada:number=this.numJornada+1;
   jornada: Jornada= new Jornada(this.liga.$listaEquipos, this.numJornada, this.liga.$fechas[this.numJornada]);
   clasificacion = this.jornada.$clasiJornada.$listaClasiJornada;
   cronologia: Cronologia;
@@ -34,34 +35,38 @@ export class JornadaPage implements OnInit {
   }
   visible: boolean = true;
   habilitado: boolean=true;
+  habitlitadoNext: boolean=true;
+  habitlitadoBack:boolean=true;
   segmentChanged(sudorYlagrimas) {
     this.visible = !this.visible;
   }
   cambiarAnterior(numJornada){
     if (numJornada>=0) {
       this.numJornada=numJornada;
+      this.letreroJornada=this.numJornada+1;
       this.jornada= this.liga.$listaJornadas[this.numJornada];
       this.resultado=this.jornada.$listaPartidos;
       this.clasificacion = this.jornada.$clasiJornada.$listaClasiJornada;
     }
   }
   cambiarSiguiente(numJornada){
-    if (numJornada<=this.liga.$maxJornadas) {
+    if (numJornada<this.liga.$maxJornadas) {
       this.numJornada=numJornada;
+      this.letreroJornada=this.numJornada+1;
       this.jornada= this.liga.$listaJornadas[this.numJornada];
       this.resultado=this.jornada.$listaPartidos;
       this.clasificacion = this.jornada.$clasiJornada.$listaClasiJornada;
     }
   }
   jugarJornada(numJornada){
-    if (this.liga.$listaJornadas.length+1<this.liga.$maxJornadas) {
+    if (this.liga.$listaJornadas.length<this.liga.$maxJornadas) {
       this.numJornada=numJornada;
+      this.letreroJornada=this.numJornada+1;
       this.liga.guardarJornada(this.jornada);
       this.jornada=new Jornada(this.liga.$listaEquipos, this.numJornada, this.liga.$fechas[this.numJornada]);
       this.clasificacion = this.jornada.$clasiJornada.$listaClasiJornada;
       this.resultado=this.jornada.$listaPartidos;
     }else{
-      // this.clasificacion=[];
       this.habilitado=false;
     }
 
