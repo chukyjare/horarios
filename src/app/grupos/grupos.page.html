@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Grupos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>  
+  <ion-card *ngFor="let item of grupos">
+    <ion-card-content>
+      <ion-row>
+        <ion-col class="ion-text-center" >
+            {{item.$nombre}}
+        </ion-col>
+      </ion-row>     
+    </ion-card-content>   
+  </ion-card>
+</ion-content>

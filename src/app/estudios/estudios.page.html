@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Estudios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>  
+  <ion-card *ngFor="let item of horasList">
+    <ion-card-content>
+      <ion-row>
+        <ion-col class="ion-text-center" >
+            {{item.nombre}}
+        </ion-col>
+      </ion-row>     
+    </ion-card-content>   
+  </ion-card>
+</ion-content>

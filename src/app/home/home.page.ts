@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DataService } from '../core/model/services/data.service';
+
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,25 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
-
+  constructor(private datosService:DataService) {
+    this.abrir(datosService);
+  }
+  
+  ngOnInit(): void {
+    
+  }
+  
+  async abrir(datosService: DataService){
+    await datosService.openDB();
+  }
+  getHoras(){
+    this.datosService.getHoras();
+  }
+  
+  getGrupos(){
+    this.datosService.getGrupos();
+  }
+  getHorario(){
+    this.datosService.getHorario();
+  }
 }

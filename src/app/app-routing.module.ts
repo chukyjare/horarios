@@ -8,21 +8,22 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'jornada',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
-    path: 'jornada',
-    loadChildren: () => import('./jornada/jornada.module').then( m => m.JornadaPageModule)
+    path: 'estudios',
+    loadChildren: () => import('./estudios/estudios.module').then( m => m.EstudiosPageModule)
   },
   {
-    path: 'clasificacion',
-    loadChildren: () => import('./clasificacion/clasificacion.module').then( m => m.ClasificacionPageModule)
+    path: 'grupos',
+    loadChildren: () => import('./grupos/grupos.module').then( m => m.GruposPageModule)
   },
   {
-    path: 'cronologia',
-    loadChildren: () => import('./cronologia/cronologia.module').then( m => m.CronologiaPageModule)
+    path: 'horario',
+    loadChildren: () => import('./horario/horario.module').then( m => m.HorarioPageModule)
   },
+ 
 ];
 
 @NgModule({

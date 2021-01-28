@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-item color="success">
+      <ion-title slot="end">HORARIO</ion-title>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-row class="ion-text-center" style="border: 1px solid black;">
+    <ion-col style="border: 1px solid black;">H\D</ion-col>
+    <ion-col style="border: 1px solid black;">LUNES</ion-col>
+    <ion-col style="border: 1px solid black;">MARTES</ion-col>
+    <ion-col style="border: 1px solid black;">MIÉRCOLES</ion-col>
+    <ion-col style="border: 1px solid black;">JUEVES</ion-col>
+    <ion-col style="border: 1px solid black;">VIERNES</ion-col>
+  </ion-row>
+
+  <ion-row  *ngFor="let item of horario" class="ion-text-center" style="border: 1px solid black;">
+    <ion-col style="border: 1px solid black;">{{item.hora}}</ion-col>
+    <ion-col style="border: 1px solid black;"><ion-card>
+      <ion-card-content>
+        <ion-row>
+          <ion-col class="ion-text-center" >
+              {{item.asignaturaL}}
+          </ion-col>
+        </ion-row>     
+      </ion-card-content>   
+    </ion-card></ion-col>
+    <ion-col style="border: 1px solid black;"><ion-card>
+      <ion-card-content>
+        <ion-row>
+          <ion-col class="ion-text-center" >
+              {{item.asignaturaM}}
+          </ion-col>
+        </ion-row>     
+      </ion-card-content>   
+    </ion-card></ion-col>
+    <ion-col style="border: 1px solid black;"><ion-card>
+      <ion-card-content>
+        <ion-row>
+          <ion-col class="ion-text-center" >
+              {{item.asignaturaMX}}
+          </ion-col>
+        </ion-row>     
+      </ion-card-content>   
+    </ion-card></ion-col>
+    <ion-col style="border: 1px solid black;"><ion-card>
+      <ion-card-content>
+        <ion-row>
+          <ion-col class="ion-text-center" >
+              {{item.asignaturaJ}}
+          </ion-col>
+        </ion-row>     
+      </ion-card-content>   
+    </ion-card></ion-col>
+    <ion-col style="border: 1px solid black;"><ion-card>
+      <ion-card-content>
+        <ion-row>
+          <ion-col class="ion-text-center" >
+              {{item.asignaturaV}}
+          </ion-col>
+        </ion-row>     
+      </ion-card-content>   
+    </ion-card></ion-col>
+  </ion-row>
+ 
+<!-- <ion-card *ngFor="let item of grupos">
+    <ion-card-content>
+      <ion-row>
+        <ion-col class="ion-text-center" >
+            {{item.$nombre}}
+        </ion-col>
+      </ion-row>     
+    </ion-card-content>   
+  </ion-card> -->
+
+
+</ion-content>
