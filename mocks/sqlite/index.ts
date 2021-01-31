@@ -1,3 +1,4 @@
+// import { SQLiteObject } from '@ionic-native/sqlite/ngx';
 // import { SQLite } from '@ionic-native/sqlite/ngx';
 
 // export interface SQLiteDatabaseConfig {
@@ -15,44 +16,77 @@
 //     iosDatabaseLocation?: string;
 // }
 
-// export declare class SQLiteObject {
-//     _objectInstance: any;
-//     constructor(_objectInstance: any);
-//     databaseFeatures: {
-//         isSQLitePluginDatabase: boolean;
+// export class SQLiteObjectMock extends SQLiteObject {   
+    
+//     open(): Promise<any>{
+//         let theResult: any=[];
+//         return new Promise((resolve, reject) => {
+//             resolve(theResult);
+//         });
 //     };
-//     openDBs: any;
-//     addTransaction(transaction: (tx: SQLiteTransaction) => void): void;
-//     /**
-//      * @param fn {any}
-//      * @returns {Promise<any>}
-//      */
-//     transaction(fn: any): Promise<any>;
-//     /**
-//      * @param fn {Function}
-//      * @returns {Promise<any>}
-//      */
-//     readTransaction(fn: (tx: SQLiteTransaction) => void): Promise<any>;
-//     startNextTransaction(): void;
-//     /**
-//      * @returns {Promise<any>}
-//      */
-//     open(): Promise<any>;
-//     /**
-//      * @returns {Promise<any>}
-//      */
-//     close(): Promise<any>;
-//     /**
-//      * Execute SQL on the opened database. Note, you must call `create` first, and
-//      * ensure it resolved and successfully opened the database.
-//      */
-//     executeSql(statement: string, params: any): Promise<any>;
-//     /**
-//      * @param sqlStatements {Array<string | string[]>}
-//      * @returns {Promise<any>}
-//      */
-//     sqlBatch(sqlStatements: Array<string | string[]>): Promise<any>;
-//     abortallPendingTransactions(): void;
+    
+//     executeSql(statement: string, params: any): Promise<any>{
+
+//         if(statement==="Select descripcion as nombre from horasSemana"){
+//             let horasData: any= ["8:15", "9:10", "10:05", "11:25", "12:15", "13:10"];
+//             return new Promise((resolve, reject) => {
+//                 resolve(horasData);
+//             });
+//         }
+
+//         if(statement==="select estudios.nombre from estudios where 1"){
+//             let estudiosData: any= ["ESO","DIV","BAC","PCPI","GM","GS"];
+//             return new Promise((resolve, reject) => {
+//                 resolve(estudiosData);
+//             });
+//         }
+
+//         if(statement==="select grupo.nombre from grupo,estudios where grupo.idEstudios == estudios.idEstudios and estudios.nombre like ?"){
+//             let gruposData: any= ["e1a","e1b","e1c","e1d","e2a","e2b","e2c","e2d","3a","3b","3c","3d","4a","4b","4c"];
+//             return new Promise((resolve, reject) => {
+//                 resolve(gruposData);
+//             });
+//         }
+
+//         if(statement==="select diaSemana.nombre, horasSemana.descripcion, materia.nombre from horasSemana, diaClase, materiahoraclase, horaClase, materia, diaSemana, grupo, estudios where  grupo.nombre like ? and diaSemana.idDiaSemana==diaClase.idDiaSemana and diaclase.idGrupo==grupo.idGrupo and horaclase.idDiaClase==diaclase.idDiaClase and horaclase.idHorasSemana==horassemana.idHorasSemana and materiahoraclase.idHoraClase==horaclase.idHoraClase and materiahoraclase.idMateria==materia.idMateria group by horaClase.idHorasSemana, horaClase.idDiaClase, horaClase.idHoraClase"){
+//             let horarioData: any= [
+//                 { nombreDia:"LUNES", descripcion: "8:15", nombreMat: "PMYDM"},
+//                 { nombreDia:"LUNES", descripcion: "9:10", nombreMat: "PMYDM"},
+//                 { nombreDia:"LUNES", descripcion: "10:05", nombreMat: "PMYDM"},
+//                 { nombreDia:"LUNES", descripcion: "11:25", nombreMat: "PMYDM"},
+//                 { nombreDia:"LUNES", descripcion: "12:15", nombreMat: "PMYDM"},
+//                 { nombreDia:"LUNES", descripcion: "13:10", nombreMat: "PMYDM"},
+//                 { nombreDia:"MARTES", descripcion: "8:15", nombreMat: "PMYDM"},
+//                 { nombreDia:"MARTES", descripcion: "9:10", nombreMat: "PMYDM"},
+//                 { nombreDia:"MARTES", descripcion: "10:05", nombreMat: "PMYDM"},
+//                 { nombreDia:"MARTES", descripcion: "11:25", nombreMat: "PMYDM"},
+//                 { nombreDia:"MARTES", descripcion: "12:15", nombreMat: "PMYDM"},
+//                 { nombreDia:"MARTES", descripcion: "13:10", nombreMat: "PMYDM"},
+//                 { nombreDia:"MIERCOLES", descripcion: "8:15", nombreMat: "PMYDM"},
+//                 { nombreDia:"MIERCOLES", descripcion: "9:10", nombreMat: "PMYDM"},
+//                 { nombreDia:"MIERCOLES", descripcion: "10:05", nombreMat: "PMYDM"},
+//                 { nombreDia:"MIERCOLES", descripcion: "11:25", nombreMat: "PMYDM"},
+//                 { nombreDia:"MIERCOLES", descripcion: "12:15", nombreMat: "PMYDM"},
+//                 { nombreDia:"MIERCOLES", descripcion: "13:10", nombreMat: "PMYDM"},
+//                 { nombreDia:"JUEVES", descripcion: "8:15", nombreMat: "PMYDM"},
+//                 { nombreDia:"JUEVES", descripcion: "9:10", nombreMat: "PMYDM"},
+//                 { nombreDia:"JUEVES", descripcion: "10:05", nombreMat: "PMYDM"},
+//                 { nombreDia:"JUEVES", descripcion: "11:25", nombreMat: "PMYDM"},
+//                 { nombreDia:"JUEVES", descripcion: "12:15", nombreMat: "PMYDM"},
+//                 { nombreDia:"JUEVES", descripcion: "13:10", nombreMat: "PMYDM"},
+//                 { nombreDia:"VIERNES", descripcion: "8:15", nombreMat: "PMYDM"},
+//                 { nombreDia:"VIERNES", descripcion: "9:10", nombreMat: "PMYDM"},
+//                 { nombreDia:"VIERNES", descripcion: "10:05", nombreMat: "PMYDM"},
+//                 { nombreDia:"VIERNES", descripcion: "11:25", nombreMat: "PMYDM"},
+//                 { nombreDia:"VIERNES", descripcion: "12:15", nombreMat: "PMYDM"},
+//                 { nombreDia:"VIERNES", descripcion: "13:10", nombreMat: "PMYDM"}
+//               ];
+//             return new Promise((resolve, reject) => {
+//                 resolve(horarioData);
+//             });
+//         }
+//     };
+    
 // }
 
 // export interface SQLiteTransaction {
@@ -77,30 +111,10 @@
 //      * @return Promise<SQLiteObject>
 //      */
 //     create(config: SQLiteDatabaseConfig): Promise<SQLiteObject> {
-//         let theResult: SQLiteObject;
+//         let theResult: SQLiteObject= new SQLiteObject(config);
 //         return new Promise((resolve, reject) => {
 //             resolve(theResult);
 //         });
 //     };
-    
-//     // /**
-//     //  * Verify that both the Javascript and native part of this plugin are installed in your application
-//     //  * @returns {Promise<any>}
-//     //  */
-//     // echoTest(): Promise<any> {
-//     //     return new Promise((resolve, reject) => {
-//     //         resolve();
-//     //     });
-//     // };
-//     // /**
-//     //  * Deletes a database
-//     //  * @param config {SQLiteDatabaseConfig} database configuration
-//     //  * @returns {Promise<any>}
-//     //  */
-//     // deleteDatabase (config: SQLiteDatabaseConfig): Promise<any> {
-//     //     return new Promise((resolve, reject) => {
-//     //         resolve();
-//     //     });
-//     // };
 
 // }

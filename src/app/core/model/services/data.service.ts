@@ -107,7 +107,7 @@ private getConector() {
     createFromLocation: 1,
   };
 }
-private createPromise(sql: string, arrayList: any[]) {
+createPromise(sql: string, arrayList: any[]): Promise<any> {
     return new Promise((resolve, reject) => {
       this.executeSentence(arrayList, sql, [])
         .then((response) => resolve(response))

@@ -1,8 +1,9 @@
+import { GruposService } from './../core/model/services/grupos/grupos.service';
 import { DataService } from './../core/model/services/data.service';
 import { EstudiosService } from './../core/model/services/estudios/estudios.service';
 import { Estudio } from './../core/model/estudio';
 import { Component, OnInit } from '@angular/core';
-import { Grupos } from '../core/model/grupos';
+import { Grupo } from '../core/model/grupo';
 import { NavigationExtras, Router } from '@angular/router';
 
 
@@ -12,45 +13,57 @@ import { NavigationExtras, Router } from '@angular/router';
   styleUrls: ['./estudios.page.scss'],
 })
 export class EstudiosPage implements OnInit{
-  grupos: Grupos;
-  horasList: any[]=[];
-  private estudios: Array<Estudio> = new Array<Estudio>();
+  grupos: Grupo;
+  estudiosList: any[]=[];
+  estudios: Array<Estudio> = new Array<Estudio>();
 
-  constructor(private route: Router, private data: DataService, private estudiosService:EstudiosService) {
-    this.getListaService();
+  constructor(private route: Router, private data: DataService, private estudiosService:EstudiosService, private gruposService: GruposService) {
+    this.getListaEstudios();
   }
   
   ngOnInit(): void {
     
   }
 
-  getListaService(){
-    this.estudiosService.getEstudios(this.data);
-    this.getListaEstudios();
+  getListaEstudios(){
+    this.estudiosList=this.estudiosService.getEstudiosList();
+    console.log("Esto es el horariosList ",this.estudiosList);
     this.rellenar();
   }
 
-  getListaEstudios(){
-    this.horasList=this.estudiosService.getHorasList();
-    console.log("Esto es el horariosList ",this.horasList);
-  }
-
    rellenar(): Array<Estudio> {
-    for (let i = 0; i < this.horasList.length; i++) {
-      this.estudios.push(new Estudio(i+1, this.horasList[i].nombre));
+    for (let i = 0; i < this.estudiosList.length; i++) {
+      this.estudios.push(new Estudio(i+1, this.estudiosList[i].nombre));
     }
     console.log(this.estudios);
     return this.estudios;
   }
   
-  async pasaDato(event:any) {
-    this.grupos=new Grupos(event);
-    let extrasNavegacion: NavigationExtras = {
-      state: {
-        grupos: this.grupos,
-      },
-    };
-    this.route.navigate(["grupos"], extrasNavegacion);
+  async pasaDato(event:Estudio) {
+//VEr porque me llega antes el enrutamiento que la propia carga de la base de datos
+
+    this.gruposService.getGrupos(this.data,event.$nombre);
+    new Promise((resolve: Function, reject: Function)=>{
+      setTimeout(() => {
+        let extrasNavegacion: NavigationExtras = {
+          state: {
+            grupos: this.grupos,
+          },
+        };
+        this.route.navigate(["grupos"], extrasNavegacion);
+      }, 500);
+    })
+    .then(()=>{})
+    .catch((e)=>console.log(e))
+
+    // this.gruposService.getGrupos(this.data,event.$nombre);
+    // let extrasNavegacion: NavigationExtras = {
+    //   state: {
+    //     grupos: this.grupos,
+    //   },
+    // };
+    // this.route.navigate(["grupos"], extrasNavegacion);
+   
 
 }
 }

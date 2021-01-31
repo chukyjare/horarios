@@ -1,4 +1,4 @@
-import { Grupos } from "./grupos";
+import { Grupo } from "./grupo";
 import { Hora } from "./hora";
 import { Materia } from "./materia";
 
@@ -8,7 +8,7 @@ export class Horario{
     private materias: Array<Materia>;
     private horarios: Map<Hora,Array<Materia>>;
     
-    constructor(grupo:Grupos){
+    constructor(grupo:Grupo){
         //Aqui iria la llamada a la base de datos y guardo los horarios en el mapa
     }
     /**
